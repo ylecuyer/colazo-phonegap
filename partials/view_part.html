@@ -1,0 +1,15 @@
+<p>Nombre:</p>
+<p>{{part.name}}</p>
+
+<a href="#/add_log/{{part.ID}}" class="btn btn-default btn-lg btn-block">Agregar un log</a>
+
+<br/>
+
+<ul class="list-group">
+	<li ng-repeat="log in logs | filter: {partID: part.ID}" class="list-group-item">
+	<span class="badge">${{log.cost}}</span>
+	<p><b>Descripción:</b> {{log.description}}<br/>
+	<b>Razón:</b> {{log.reason}}<br/>
+	<b>Fecha:</b> {{log.date}}</p>
+	</li>
+</ul>

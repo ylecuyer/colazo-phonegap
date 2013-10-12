@@ -1,0 +1,9 @@
+<p>Bienvenido a la herramienta BiciRevisión!</p>
+
+
+<a href="#/add_bicycle" class="btn btn-default btn-lg btn-block">Agregar bicicleta</a>
+<br/>
+<div class="list-group">
+	<a href="#/bicycle/{{bicycle.ID}}" ng-repeat="bicycle in bicycles" class="list-group-item">{{bicycle.description}}</a>
+</div>
+

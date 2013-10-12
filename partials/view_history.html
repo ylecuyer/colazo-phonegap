@@ -1,0 +1,9 @@
+<p>Total: <b>${{total}}</b></p>
+<ul class="list-group">
+	<li ng-repeat="log in logs" class="list-group-item">
+	<span class="badge">${{log.cost}}</span>
+	<p><b>Descripción:</b> {{log.description}}<br/>
+	<b>Razón:</b> {{log.reason}}<br/>
+	<b>Fecha:</b> {{log.date}}</p>
+	</li>
+</ul>

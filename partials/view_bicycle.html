@@ -1,0 +1,11 @@
+<p>Descripción:</p>
+<p>{{bicycle.description}}</p>
+
+<a href="#/history/{{bicycle.ID}}" class="btn btn-default btn-lg btn-block">Historía</a>
+<a href="#/add_part/{{bicycle.ID}}" class="btn btn-default btn-lg btn-block">Agregar una parte</a>
+
+<br/>
+
+<div class="list-group">
+	<a ng-repeat="part in parts | filter: {bicycleID: bicycle.ID}" href="#/part/{{part.ID}}" class="list-group-item">{{part.name}}</a>
+</div>

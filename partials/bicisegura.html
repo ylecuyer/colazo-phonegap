@@ -1,0 +1,32 @@
+<p>Bienvenido a la herramienta BiciSegura!</p>
+
+<form role="form">
+	<div class="form-group">
+		<label for="first_names">Nombres:</label>
+		<input type="text" class="form-control" id="first_names" placeholder="Nombres" ng-model="first_names" />
+	</div>
+	<div class="form-group">
+		<label for="last_names">Apellidos:</label>
+		<input type="text" class="form-control" id="last_names" placeholder="Apellidos" ng-model="last_names" />
+	</div>
+	<div class="form-group">
+		<label for="cedula">Cédula:</label>
+		<input type="number" class="form-control" id="cedula" placeholder="Cédula" ng-model="cedula" />
+	</div>
+	<div class="form-group">
+		<label for="RH">RH:</label>
+		<select class="form-control" ng-model="RH">
+			<option value="A+">A+</option>
+			<option value="A-">A-</option>
+			<option value="B+">B+</option>
+			<option value="B-">B-</option>
+			<option value="AB+">AB+</option>
+			<option value="AB-">AB-</option>
+			<option value="O+">O+</option>
+			<option value="O-">O-</option>
+		</select>
+	</div>
+</form>
+
+<!--TODO emergency_contact -->
+<button type="button" class="btn btn-lg btn-success btn-block" ng-click="save()">Guardar</button>
