@@ -1,4 +1,12 @@
+function safeApply(scope, fn) {
+      (scope.$$phase || scope.$root.$$phase) ? fn() : scope.$apply(fn);
+}
+
 var colazo = angular.module('colazo', []);
+colazo.config(['$compileProvider', function($compileProvider) {
+
+      $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+}]);
 
 colazo.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
@@ -21,13 +29,54 @@ function HomeCtrl($scope) {
 
   user = angular.fromJson(localStorage["user"]);
 
-  if(user != undefined)
+  if(user != undefined) {
     $scope.greeter = user.first_names;
-  else
+    $scope.emergency_contact = user.emergency_contact;
+  }
+  else {
     $scope.greeter = "usuario de Colazo!";
+  }
+
 }
 
 function BiciSeguraCtrl($scope, $location) {
+
+  var options = new ContactFindOptions();
+  options.filter = "";
+  options.multiple = true; 
+  filter = ["displayName", "phoneNumbers"];
+  navigator.contacts.find(filter, onSuccess, onError, options);
+
+  function onSuccess(contacts) {
+
+    safeApply($scope, function() {
+      $scope.values = [];
+
+      for (i = 0; i < contacts.length; i++) {
+
+        if(contacts[i].phoneNumbers == null)
+          continue;
+
+        for (j = 0; j < contacts[i].phoneNumbers.length; j++) {
+          $scope.values.push(
+            {
+              displayName: contacts[i].displayName + ' - ' + contacts[i].phoneNumbers[j].value,
+              phoneNumber: contacts[i].phoneNumbers[j].value,
+            });
+        }
+      }
+
+      $scope.values.sort();
+
+    });
+  }
+
+
+
+  function onError(contactError) {
+    alert('onError!');
+  };
+
 
   user = angular.fromJson(localStorage["user"]);
 
@@ -46,6 +95,7 @@ function BiciSeguraCtrl($scope, $location) {
       last_names: $scope.last_names,
       cedula: $scope.cedula,
       RH: $scope.RH,
+      emergency_contact: $scope.emergency_contact
     }
 
     localStorage["user"] = angular.toJson(user);
@@ -64,6 +114,7 @@ function LockscreenCtrl($scope) {
     $scope.last_names = user.last_names || "Undefinido";
     $scope.cedula = user.cedula || "Undefinido";
     $scope.RH = user.RH || "Undefinido";
+    $scope.emergency_contact = user.emergency_contact;
   }
   else {
 

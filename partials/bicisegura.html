@@ -26,7 +26,17 @@
 			<option value="O-">O-</option>
 		</select>
 	</div>
+
+  <div class="form-group">
+    <label for="emergency_contact">Contacto de emergencia</label>
+    <select class="form-control" ng-model="emergency_contact">
+      <option ng-repeat="value in values" value="{{value.phoneNumber}}">{{value.displayName}}</option>
+    </select>
+  </div>
+
 </form>
+
+
 
 <!--TODO emergency_contact -->
 <button type="button" class="btn btn-lg btn-success btn-block" ng-click="save()">Guardar</button>
