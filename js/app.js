@@ -318,9 +318,15 @@ function BiciMapaCtrl($scope, $http, $route) {
 
     $('#view').addClass('container');
 
+    $('body').css('padding-top', 50);
+    $('nav').addClass('navbar-fixed-top');
   });
 
   $('#view').removeClass('container');
+
+  $('body').css('padding-top', 0);
+  $('nav').removeClass('navbar-fixed-top');
+  $('nav').css('margin-bottom', 0);
 
   $('#map').width(window.innerWidth);
   $('#map').height(window.innerHeight - 50);
