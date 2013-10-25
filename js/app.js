@@ -398,7 +398,15 @@ function BiciMapaCtrl($scope, $http, $route) {
       icon = L.Icon.Default;
     }
 
-    L.marker([data[i].latitude, data[i].longitude], {icon: icon}).addTo(map);
+    !function(place) {
+
+      L.marker([place.latitude, place.longitude], {icon: icon}).on('click', function() {
+
+          navigator.notification.alert(place.description, function() {}, place.title , "OK");
+
+      }).addTo(map);
+
+    }(data[i]);
 
   }
 
