@@ -22,6 +22,7 @@ colazo.config(['$routeProvider', function($routeProvider) {
   when('/BiciMapa', {templateUrl: 'partials/bicimapa.html', controller: BiciMapaCtrl}).
   when('/BiciEventos', {templateUrl: 'partials/bicieventos.html', controller: BiciEventosCtrl}).
   when('/Lockscreen', {templateUrl: 'partials/lockscreen.html', controller: LockscreenCtrl}).
+  when('/About', {templateUrl: 'partials/about.html', controller: AboutCtrl}).
   otherwise({redirectTo: '/index'});
 }]);
 
@@ -383,5 +384,9 @@ function BiciMapaCtrl($scope, $http, $route) {
 
 
 });
+
+}
+
+function AboutCtrl() {
 
 }
