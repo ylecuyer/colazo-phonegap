@@ -282,6 +282,7 @@ function ViewHistoryCtrl($scope, $routeParams, $filter, $log) {
 
 function BiciEventosCtrl($scope, $http) {
 
+  moment.lang('es');
   var now = moment().format("YYYY-MM-DDTHH:mm:ssZ");
 
   $http.get('https://www.googleapis.com/calendar/v3/calendars/lagranrodada%40gmail.com/events?orderBy=startTime&timeMin='+now+'&singleEvents=true&maxResults=20&key=AIzaSyAhqZbO7lifEGVyEt5nVN8KFlKf6mYB79Y').success(function(data, status, headers, config) {
@@ -300,8 +301,8 @@ function BiciEventosCtrl($scope, $http) {
 
       }
     
-      if ("date" in data.items[i].start) data.items[i].start = moment(data.items[i].start.date).format("YYYY-MM-DD");
-      else if ("dateTime" in data.items[i].start) data.items[i].start = moment(data.items[i].start.dateTime).format("YYYY-MM-DD");
+      if ("date" in data.items[i].start) data.items[i].start = moment(data.items[i].start.date).format("DD MMM YYYY HH:mm");
+      else if ("dateTime" in data.items[i].start) data.items[i].start = moment(data.items[i].start.dateTime).format("DD MMM YYYY HH:mm");
     
 
     }

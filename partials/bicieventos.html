@@ -3,10 +3,10 @@
 <ul class="list-group">
 	<li ng-repeat="event in events" class="list-group-item">
 	<p>
-	<b>Nombre:</b> {{event.summary}}<br/>
-	<b>Descripción:</b> {{event.shortdescription}}<br/>
-	<b>Donde:</b> {{event.location}}<br/>
-	<b>Cuando:</b> {{event.start}} 	
+    <b>{{event.summary}}</b><br/>
+    <small>{{event.shortdescription}}</small><br />
+	  {{event.location}}<br/>
+	  {{event.start}}
 	</p>
 	</li>
 </ul>
