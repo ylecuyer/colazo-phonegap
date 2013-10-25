@@ -345,7 +345,6 @@ function HomeCtrl($scope) {
                 });
               }
               else {
-                alert("not connected");
                 //load from localstorage
                 $scope.events = angular.fromJson(localStorage["events"]);
                 $('#loading').hide();
