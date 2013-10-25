@@ -1,7 +1,7 @@
 <p>BiciEventos</p>
 
 <ul class="list-group">
-	<li ng-repeat="event in events" class="list-group-item">
+  <li ng-repeat="event in events" class="list-group-item" ng-click="on_event_clicked(event)">
 	<p>
     <b>{{event.summary}}</b><br/>
     <small>{{event.shortdescription}}</small><br />

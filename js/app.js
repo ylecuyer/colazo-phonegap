@@ -282,6 +282,13 @@ function ViewHistoryCtrl($scope, $routeParams, $filter, $log) {
 
 function BiciEventosCtrl($scope, $http) {
 
+
+  $scope.on_event_clicked = function(data) {
+
+      navigator.notification.alert(data.description, function() {}, "Detalle del evento" , "OK");
+
+  }
+
   moment.lang('es');
   var now = moment().format("YYYY-MM-DDTHH:mm:ssZ");
 
