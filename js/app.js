@@ -32,7 +32,7 @@ function HomeCtrl($scope) {
 
   if (version > last_version) {
 
-    navigator.notification.alert("¿Qué hay de nuevo?", function() {}, "Version 2.0:\n\nCon esta versión empeza la fusión de Colazo con el bicimapa.\n\n* BiciMapa:\n  - Integración con el bicimapa\n\n* BiciEventos:\n  - Ver los eventos bicicleteros de Bogotá (gracías a la gran rodada)" , "OK");
+    navigator.notification.alert("Version 2.0:\n\nCon esta versión empeza la fusión de Colazo con el bicimapa.\n\n* BiciMapa:\n  - Integración con el bicimapa\n\n* BiciEventos:\n  - Ver los eventos bicicleteros de Bogotá (gracías a la gran rodada)", function() {}, "¿Qué hay de nuevo?" , "OK");
 
     localStorage["last_version"] = version;
   }
