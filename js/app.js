@@ -294,6 +294,8 @@ function ViewHistoryCtrl($scope, $routeParams, $filter, $log) {
 
 function BiciEventosCtrl($scope, $http) {
 
+
+
   $scope.on_event_clicked = function(data) {
 
       navigator.notification.alert(data.description, function() {}, "Detalle del evento" , "OK");
@@ -303,33 +305,51 @@ function BiciEventosCtrl($scope, $http) {
   moment.lang('es');
   var now = moment().format("YYYY-MM-DDTHH:mm:ssZ");
 
-  $http.get('https://www.googleapis.com/calendar/v3/calendars/lagranrodada%40gmail.com/events?orderBy=startTime&timeMin='+now+'&singleEvents=true&maxResults=20&key=AIzaSyAhqZbO7lifEGVyEt5nVN8KFlKf6mYB79Y').success(function(data, status, headers, config) {
+  var networkState = navigator.network.connection.type;
+  var connected = false;
+
+  if (networkState != Connection.NONE)
+    connected = true;
+
+  if (connected) {
+
+    $http.get('https://www.googleapis.com/calendar/v3/calendars/lagranrodada%40gmail.com/events?orderBy=startTime&timeMin='+now+'&singleEvents=true&maxResults=20&key=AIzaSyAhqZbO7lifEGVyEt5nVN8KFlKf6mYB79Y').success(function(data, status, headers, config) {
 
 
-    for (i = 0; i < data.items.length; i++) {
+      for (i = 0; i < data.items.length; i++) {
 
-      if (data.items[i].description && data.items[i].description.length > 120) {
+        if (data.items[i].description && data.items[i].description.length > 120) {
 
-        data.items[i].shortdescription = data.items[i].description.substring(0, 120) + "...";
+          data.items[i].shortdescription = data.items[i].description.substring(0, 120) + "...";
+
+        }
+        else {
+
+          data.items[i].shortdescription = data.items[i].description;
+
+        }
+
+        if ("date" in data.items[i].start) data.items[i].start = moment(data.items[i].start.date).format("DD MMM YYYY HH:mm");
+        else if ("dateTime" in data.items[i].start) data.items[i].start = moment(data.items[i].start.dateTime).format("DD MMM YYYY HH:mm");
+
 
       }
-      else {
 
-        data.items[i].shortdescription = data.items[i].description;
+      //save to localStorage
+      localStorage["events"] = angular.toJson(data.items);
 
-      }
-    
-      if ("date" in data.items[i].start) data.items[i].start = moment(data.items[i].start.date).format("DD MMM YYYY HH:mm");
-      else if ("dateTime" in data.items[i].start) data.items[i].start = moment(data.items[i].start.dateTime).format("DD MMM YYYY HH:mm");
-    
+      $scope.events = data.items;
 
-    }
+      $('#loading').hide();
 
-    $scope.events = data.items;
-
-    $('#loading').hide();
-
-  });
+    });
+  }
+  else {
+    alert("not connected");
+    //load from localstorage
+    $scope.events = angular.fromJson(localStorage["events"]);
+      $('#loading').hide();
+  }
 
 }
 
