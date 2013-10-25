@@ -371,11 +371,11 @@ function BiciMapaCtrl($scope, $http, $route) {
 
   $http.get('http://colazo.eu01.aws.af.cm/places.json').success(function(data, status, headers, config) {
 
-    icon_repair = L.icon({iconUrl: "images/taller.png", iconAnchor: [16, 37]});
-  icon_parking = L.icon({iconUrl: "images/parqueadero.png", iconAnchor: [16, 37]});
-  icon_theft = L.icon({iconUrl: "images/atencion.png", iconAnchor: [16, 37]});
-  icon_info = L.icon({iconUrl: "images/atencion.png", iconAnchor: [16, 37]});
-  icon_shop = L.icon({iconUrl: "images/tienda.png", iconAnchor: [16, 37]});
+    icon_repair = L.icon({iconUrl: "images/taller.png", iconAnchor: [19, 45]});
+  icon_parking = L.icon({iconUrl: "images/parqueadero.png", iconAnchor: [19, 45]});
+  icon_theft = L.icon({iconUrl: "images/atencion.png", iconAnchor: [19, 45]});
+  icon_info = L.icon({iconUrl: "images/atencion.png", iconAnchor: [19, 45]});
+  icon_shop = L.icon({iconUrl: "images/tienda.png", iconAnchor: [19, 45]});
 
   for(i = 0; i < data.length; i++) {
 
