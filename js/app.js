@@ -28,6 +28,16 @@ colazo.config(['$routeProvider', function($routeProvider) {
 
 function HomeCtrl($scope) {
 
+  last_version = localStorage["last_version"] || 0;
+
+  if (version > last_version) {
+
+    navigator.notification.alert("¿Qué hay de nuevo?", function() {}, "Version 2.0:\n\nCon esta versión empeza la fusión de Colazo con el bicimapa.\n\n* BiciMapa:\n  - Integración con el bicimapa\n\n* BiciEventos:\n  - Ver los eventos bicicleteros de Bogotá (gracías a la gran rodada)" , "OK");
+
+    localStorage["last_version"] = version;
+  }
+
+
   user = angular.fromJson(localStorage["user"]);
 
   if(user != undefined) {
