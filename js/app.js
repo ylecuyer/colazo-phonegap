@@ -70,6 +70,8 @@ function BiciSeguraCtrl($scope, $location) {
       $scope.values.sort();
 
     });
+
+    $('#loading').hide();
   }
 
 
