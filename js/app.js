@@ -282,7 +282,6 @@ function ViewHistoryCtrl($scope, $routeParams, $filter, $log) {
 
 function BiciEventosCtrl($scope, $http) {
 
-
   $scope.on_event_clicked = function(data) {
 
       navigator.notification.alert(data.description, function() {}, "Detalle del evento" , "OK");
@@ -316,8 +315,9 @@ function BiciEventosCtrl($scope, $http) {
 
     $scope.events = data.items;
 
+    $('#loading').hide();
 
-});
+  });
 
 }
 
@@ -390,8 +390,9 @@ function BiciMapaCtrl($scope, $http, $route) {
 
   }
 
+  $('#loading').hide();
 
-});
+  });
 
 }
 
